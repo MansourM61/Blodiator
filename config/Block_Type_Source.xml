@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<block name="Source">
+    <inport>
+    </inport>
+    <outport>
+        <port id='o-0' name='Output 0' var='O0' type='logical'>Output port 0, with ID of o-0, name of Output 0, attached to variable O0 of designated function</port>
+        <port id='o-1' name='Output 1' var='O1' type='electrical'>Output port 1, with ID of o-1, name of Output 1, attached to variable O1 of designated function</port>
+        <port id='o-2' name='Output 2' var='O2' type='optical'>Output port 2, with ID of o-2, name of Output 2, attached to variable O2 of designated function</port>
+        <port id='o-3' name='Output 3' var='O3' type='logical'>Output port 3, with ID of o-3, name of Output 3, attached to variable O3 of designated function</port>
+        <port id='o-4' name='Output 4' var='O4' type='electrical'>Output port 4, with ID of o-4, name of Output 4, attached to variable O4 of designated function</port>
+    </outport>
+    <property>
+        <parameter label='Parameter 0' type='d' default='3.5'>
+		<range>0.0</range>
+		<range>5.0</range>
+	</parameter>
+        <parameter label='Parameter 1' type='s' default='Default Parameter'>
+	</parameter>
+        <parameter label='Parameter 2' type='l' default='2'>
+		<range>-2</range>
+		<range>3.5</range>
+		<range>3.9</range>
+		<range>Mode 1</range>
+		<range>Mode 2</range>
+		<range>Mode 3</range>
+	</parameter>
+        <parameter label='Parameter 3' type='d' default='33'>
+		<range>-20</range>
+		<range>40</range>
+	</parameter>
+        <parameter label='Parameter 4' type='s' default='Default Text'>
+	</parameter>
+    </property>
+    <function name='func'>function_file.c</function>
+</block>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<connector name="Generic Connector">
+    <color name='Connector Colors for Different Modes'>
+        <normal>black,black</normal>
+        <disabled>pink,pink</disabled>
+        <selected>red,red</selected>
+        <erroneous>yellow,yellow</erroneous>
+    </color>
+    <brush name='Connector Brushes for Different Modes'>
+        <normal>4</normal>
+        <disabled>2, 2</disabled>
+        <selected>1, 2</selected>
+        <erroneous>2, 1, 1</erroneous>
+    </brush>
+    <arrow name='Connector Arrow Pattern'>12, 25, 9</arrow>
+    <type name='Connector Colors for Different Signal Types'>
+        <none>black</none>
+        <logical>blue</logical>
+        <electrical>green</electrical>
+        <optical>red</optical>
+    </type>
+</connector>

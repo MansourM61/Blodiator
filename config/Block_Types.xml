@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<block-types name="Block Types">
+    <type name='Source'>./config/Block_Type_Source.xml</type>
+    <type name='DSP'>./config/Block_Type_DSP.xml</type>
+    <type name='Sink'>./config/Block_Type_Sink.xml</type>
+</block-types>

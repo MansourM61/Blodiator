@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<node name="Generic Node">
+    <color name='Node Colors for Different Modes'>
+        <normal>black,black</normal>
+        <disabled>pink,pink</disabled>
+        <selected>red,red</selected>
+        <erroneous>yellow,yellow</erroneous>
+    </color>
+    <brush name='Node Brushes for Different Modes'>
+        <normal>1.0</normal>
+        <disabled>1.0</disabled>
+        <selected>1.0</selected>
+        <erroneous>1.0</erroneous>
+    </brush>
+    <size name='Node Size'>1</size>
+    <type name='Node Colors for Different Signal Types'>
+        <none>black</none>
+        <logical>blue</logical>
+        <electrical>green</electrical>
+        <optical>red</optical>
+    </type>
+</node>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<block name="Sink">
+    <inport>
+        <port id='i-0' name='Input 0' var='I0' type='logical'>Input port 0, with ID of i-0, name of Input 0, attached to variable I0 of designated function</port>
+        <port id='i-1' name='Input 1' var='I1' type='logical'>Input port 1, with ID of i-1, name of Input 1, attached to variable I1 of designated function</port>
+        <port id='i-2' name='Input 2' var='I2' type='electrical'>Input port 2, with ID of i-2, name of Input 2, attached to variable I2 of designated function</port>
+        <port id='i-3' name='Input 3' var='I3' type='optical'>Input port 3, with ID of i-3, name of Input 3, attached to variable I3 of designated function</port>
+        <port id='i-4' name='Input 4' var='I4' type='electrical'>Input port 4, with ID of i-4, name of Input 4, attached to variable I4 of designated function</port>
+    </inport>
+    <outport>
+    </outport>
+    <property>
+        <parameter label='Parameter 0' type='d' default='3.5'>
+		<range>0.0</range>
+		<range>5.0</range>
+	</parameter>
+        <parameter label='Parameter 1' type='s' default='Default Parameter'>
+	</parameter>
+        <parameter label='Parameter 2' type='l' default='2'>
+		<range>-2</range>
+		<range>3.5</range>
+		<range>3.9</range>
+		<range>Mode 1</range>
+		<range>Mode 2</range>
+		<range>Mode 3</range>
+	</parameter>
+        <parameter label='Parameter 3' type='d' default='33'>
+		<range>-20</range>
+		<range>40</range>
+	</parameter>
+        <parameter label='Parameter 4' type='s' default='Default Text'>
+	</parameter>
+    </property>
+    <function name='func'>function_file.c</function>
+</block>

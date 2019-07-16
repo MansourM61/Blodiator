@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<block name="Generic Block">
+    <color name='Block Colors for Different Modes'>
+        <normal>black,white,black,green,red,green</normal>
+        <disabled>pink,blue,black,pink,pink,pink</disabled>
+        <selected>red,green,black,red,red,red</selected>
+        <erroneous>yellow,cyan,black,yellow,yellow,yellow</erroneous>
+    </color>
+    <brush name='Block Brushes for Different Modes'>
+        <normal>1.0</normal>
+        <disabled>1.0</disabled>
+        <selected>1.0</selected>
+        <erroneous>1.0</erroneous>
+    </brush>
+    <font name='Block Font'>
+        <block-font-size>20</block-font-size>
+        <port-font-size>20</port-font-size>
+        <font-name>Helvetica</font-name>
+        <font-style>normal</font-style>
+    </font>
+    <geometry name='Block Geometry'>
+        <edge-2-port-horizontal-margin>2</edge-2-port-horizontal-margin>
+        <edge-2-port-vertical-margin>10</edge-2-port-vertical-margin>
+        <port-2-label-horizontal-margin>-5</port-2-label-horizontal-margin>
+        <port-2-port-gap>20</port-2-port-gap>
+        <port-2-name-gap>-5</port-2-name-gap>
+        <port-size>15</port-size>
+        <label-2-name-gap>-5</label-2-name-gap>
+    </geometry>
+    <type name='Block Colors for Different Signal Types'>
+        <none>yellow</none>
+        <logical>cyan</logical>
+        <electrical>brown</electrical>
+        <optical>red</optical>
+    </type>
+</block>
