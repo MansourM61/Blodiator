@@ -680,7 +680,8 @@ class BlodiatorCore(object):
             pass
           else:
             self.__tmpObj.inPortID = '0'
-#            self.__tmpObj.con_type = sig_type
+            if (self.__tmpObj.outPortID == '0'):
+              self.__tmpObj.con_type = 'none'
             pass
           pass
         elif self.__selectedPort == 'out':
@@ -691,7 +692,8 @@ class BlodiatorCore(object):
             pass
           else:
             self.__tmpObj.outPortID = '0'
-#            self.__tmpObj.con_type = sig_type
+            if (self.__tmpObj.inPortID == '0'):
+              self.__tmpObj.con_type = sig_type
             pass
           pass
         self.__tmpCons = []
