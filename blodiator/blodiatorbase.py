@@ -336,29 +336,12 @@ class BlodiatorBase(blodiatorcore.BlodiatorCore):
     """
         
     self.std.Print('Executing the block diagrams', fg, bg, style, src)
-    
-    self.verifyDiagram()
-        
+            
     # find out how many error are in the block diagram.
-    error = 0
-    for block in self.blocks:
-      if(block.mode == MODE[3]):
-        error += 1
-        pass
-    
-    for connector in self.connectors:
-      if(connector.mode == MODE[3]):
-        error += 1
-        pass
-    
-    for node in self.nodes:
-      if(node.mode == MODE[3]):
-        error += 1
-        pass
-    
+    error_count = self.verifyDiagram()
 
-    if (error > 0):  # if there are errors in the block diagrams
-      self.std.Print(str(error) + ' number of errors were found in the block diagrams', fg, bg, style, src)
+    if (error_count > 0):  # if there are errors in the block diagrams
+      self.std.Print(str(error_count) + ' number of errors were found in the block diagrams', fg, bg, style, src)
       self.std.Print('The block diagrams cannot be executed', fg, bg, style, src)
       return
     elif (self.blocks == [] and self.connectors == [] and self.nodes == []):  # if block diagram is empty
@@ -383,9 +366,10 @@ class BlodiatorBase(blodiatorcore.BlodiatorCore):
     Verifies the block diagrams connectivity, signal type, and non-feedback connections
     
     input = none
-    output = none
+    output:
+        error_count = number of errors in the block diagrams
     """
-        
+
     self.std.Print('Verifying the block diagrams', fg, bg, style, src)
     
     for block in self.blocks:
@@ -400,6 +384,8 @@ class BlodiatorBase(blodiatorcore.BlodiatorCore):
       node.mode = MODE[0]
       pass
     
+    error_count = 0
+        
     print('Block Connectivity Report:')
     print('------------------------------------------------')
 
@@ -420,6 +406,7 @@ class BlodiatorBase(blodiatorcore.BlodiatorCore):
         if Conn_Flag == False:
           print(port_Name + ' of ' + block.label + ' is not connected')
           block.update_inport_mode(index_inport, MODE[3])
+          error_count += 1
           pass
         elif Conn_Flag == True:
           print(port_Name + ' of ' + block.label + ' is correctly connected to ' + Conn_name)
@@ -437,6 +424,7 @@ class BlodiatorBase(blodiatorcore.BlodiatorCore):
         if Conn_Flag == False:
           print(port_Name + ' of ' + block.label +  ' is not connected')
           block.update_outport_mode(index_outport, MODE[3])
+          error_count += 1
           pass
         elif Conn_Flag == True:
           print(port_Name + ' of ' + block.label +  ' is correctly connected to ' + Conn_name)
@@ -452,6 +440,7 @@ class BlodiatorBase(blodiatorcore.BlodiatorCore):
       if(connector.inPortID == '0'):
         print('Input is float')
         connector.mode = MODE[3]
+        error_count += 1
         pass
       else:
         Flag = False
@@ -466,6 +455,7 @@ class BlodiatorBase(blodiatorcore.BlodiatorCore):
             if(connector.inPortID == port_ID):
               print('Input of ' +  connector.label + ' is incorrectly connected to ' + port_Name + ' of ' + block.label)
               connector.mode = MODE[3]
+              error_count += 1
               Flag = True
               break
 
@@ -481,6 +471,7 @@ class BlodiatorBase(blodiatorcore.BlodiatorCore):
       if(connector.outPortID == '0'):
         print('Output is float')
         connector.mode = MODE[3]
+        error_count += 1
         pass
       else:
         Flag = False
@@ -502,6 +493,7 @@ class BlodiatorBase(blodiatorcore.BlodiatorCore):
             if(connector.outPortID == port_ID):
               print('Output of ' +  connector.label + ' is incorrectly connected to ' + port_Name + ' of ' + block.label)
               connector.mode = MODE[3]
+              error_count += 1
               Flag = True
               break
           pass
@@ -518,6 +510,7 @@ class BlodiatorBase(blodiatorcore.BlodiatorCore):
       if(node.inPortID == '0'):
         print('Input of ' + node.label + ' is float')
         node.mode = MODE[3]
+        error_count += 1
         pass
       else:
         for con in self.connectors:
@@ -525,6 +518,7 @@ class BlodiatorBase(blodiatorcore.BlodiatorCore):
             if con.mode == MODE[3]:
               print('Input of ' + node.label + ' is connected to output of float ' + con.label)
               node.mode = MODE[3]
+              error_count += 1
               pass
             else:
               print('Input of ' + node.label + ' is connected to output of ' + con.label)
@@ -534,6 +528,7 @@ class BlodiatorBase(blodiatorcore.BlodiatorCore):
       if(outID[0] == '0'):
         print('Output 0 of ' + node.label + ' is float')
         node.mode = MODE[3]
+        error_count += 1
         pass
     
       else:        
@@ -542,6 +537,7 @@ class BlodiatorBase(blodiatorcore.BlodiatorCore):
             if con.mode == MODE[3]:
               print('Output 0 of ' + node.label + ' is connected to input of float ' + con.label)
               node.mode = MODE[3]
+              error_count += 1
               pass
             else:
               print('Output 0 of ' + node.label + ' is connected to input of ' + con.label)
@@ -551,6 +547,7 @@ class BlodiatorBase(blodiatorcore.BlodiatorCore):
       if(outID[1] == '0'):
         print('Output 1 ' + node.label + ' is float')
         node.mode = MODE[3]
+        error_count += 1
         pass
       else:        
         for con in self.connectors:
@@ -558,6 +555,7 @@ class BlodiatorBase(blodiatorcore.BlodiatorCore):
             if con.mode == MODE[3]:
               print('Output 1 of ' + node.label + ' is connected to input of float ' + con.label)
               node.mode = MODE[3]
+              error_count += 1
               pass
             else:
               print('Output 1 of ' + node.label + ' is connected to input of ' + con.label)
@@ -586,6 +584,7 @@ class BlodiatorBase(blodiatorcore.BlodiatorCore):
             if(con_sig_type != port_Type):
               print(connector.label + ' of ' + con_sig_type + ' is connected to ' + port_Name + ' of ' +  block.label +  ' of ' + port_Type)
               connector.mode = MODE[3]
+              error_count += 1
               block.update_inport_mode(index_port, MODE[3])
               break
           pass
@@ -597,6 +596,7 @@ class BlodiatorBase(blodiatorcore.BlodiatorCore):
             if(con_sig_type != port_Type):
               print(connector.label + ' of ' + con_sig_type + ' is connected to ' + port_Name + ' of ' +  block.label +  ' of ' + port_Type)
               connector.mode = MODE[3]
+              error_count += 1
               block.update_outport_mode(index_port, MODE[3])
               break
           pass
@@ -621,6 +621,7 @@ class BlodiatorBase(blodiatorcore.BlodiatorCore):
           for connector in self.connectors:
             if connector.outPortID == port_ID:
               connector.mode = MODE[3]
+              error_count += 1
           block.update_inport_mode(index_port, MODE[3])
           pass
      
@@ -638,9 +639,12 @@ class BlodiatorBase(blodiatorcore.BlodiatorCore):
         print(conn.label + ' forms a feedback from ' + input_port[1] +\
               ' to ' + output_port[1] + ' of ' + input_port[0])
         conn.mode = MODE[3]
+        error_count += 1
         pass
     pass
     print('------------------------------------------------')
+
+    return error_count
 
   # } verifyDiagram func
   
