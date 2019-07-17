@@ -36,6 +36,7 @@ import tkinter as tk
 from ..etc import cntsheetcanavs
 from ..etc import coloredtext
 from . import grfconnectorcore
+from . import grfobject
 
 
 style = 'normal'
