@@ -1,0 +1,2 @@
+recursive-include config *.xml
+recursive-include diagrams *.dat
